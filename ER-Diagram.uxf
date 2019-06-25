@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>110</x>
+      <y>80</y>
+      <w>230</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Persons
+--
+-id: int primary key not null
+-role: nvarchar(10) not null
+-name: nvarchar(50) not null
+-address: nvarchar(50) not null
+-nationality: nvarchar(3) not null
+-serializedImage: nvarchar(max)
+-description: nvarchar(max)
+-methodOfPayment: nvarchar(50)
+-valuta: nvarchar(15)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>310</y>
+      <w>220</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Reports
+--
+-id: int primary key not null
+-text: nvarchar(max) not null
+-authorId: int foreign key not null
+-subjectId: int foreign key not null
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>830</x>
+      <y>120</y>
+      <w>210</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Comments
+--
+-id: int primary key not null
+-text: nvarchar(max) not null
+-authorId: int foreign key not null
+-parentId: int foreign key not null</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>670</x>
+      <y>190</y>
+      <w>180</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;150.0;60.0;150.0;60.0;10.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>100</y>
+      <w>520</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;360.0;10.0;360.0;90.0;500.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>100</y>
+      <w>80</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0;60.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>100</y>
+      <w>120</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;290.0;100.0;290.0</additional_attributes>
+  </element>
+</diagram>
