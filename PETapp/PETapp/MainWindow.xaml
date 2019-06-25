@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PETapp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="PET Observant Database" Height="450" Width="800">
+  <Grid>
+    <DataGrid x:Name="dtgSelected" HorizontalAlignment="Left" Height="323" Margin="27,67,0,0" VerticalAlignment="Top" Width="276"/>
+    <Button x:Name="btnShowAgents" Content="Agents" HorizontalAlignment="Left" Margin="27,27,0,0" VerticalAlignment="Top" Width="75" Click="BtnShowAgents_Click"/>
+    <Button x:Name="btnShowInformants" Content="Informants" HorizontalAlignment="Left" Margin="130,27,0,0" VerticalAlignment="Top" Width="75" Click="BtnShowInformants_Click"/>
+    <Button x:Name="btnShowObservants" Content="Observants" HorizontalAlignment="Left" Margin="228,27,0,0" VerticalAlignment="Top" Width="75" Click="BtnShowObservants_Click"/>
+
+
+  </Grid>
 </Window>

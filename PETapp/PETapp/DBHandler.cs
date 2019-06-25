@@ -10,7 +10,7 @@ namespace PETapp
 {
     public class DBHandler
     {
-        readonly string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CybellesCyklerDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        readonly string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PETdb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         private int ExecuteNonQuery(string query)
         {
@@ -86,7 +86,7 @@ namespace PETapp
             switch (role.ToUpper())
             {
                 case "AGENT":
-                    ds = ExecuteQuery("select * from Persons where role = " + role.ToUpper());
+                    ds = ExecuteQuery($"select * from Persons where role = '{role.ToUpper()}'");
                     foreach (DataRow r in ds.Tables[0].Rows)
                     {
                         li.Add(new Agent((int)r["id"], (string)r["name"], (string)r["address"], (string)r["nationality"], (string)r["serializedImage"], (string)r["description"]));
@@ -94,14 +94,14 @@ namespace PETapp
                     }
                     break;
                 case "INFORMANT":
-                    ds = ExecuteQuery("select * from Persons where role = " + role.ToUpper());
+                    ds = ExecuteQuery($"select * from Persons where role = '{ role.ToUpper()}'");
                     foreach (DataRow r in ds.Tables[0].Rows)
                     {
                         li.Add(new Informant((int)r["id"], (string)r["name"], (string)r["address"], (string)r["nationality"], (string)r["serializedImage"], (string)r["description"], (string)r["methodOfPayment"], (string)r["currency"]));
                     }
                     break;
                 case "OBSERVANT":
-                    ds = ExecuteQuery("select * from Persons where role = " + role.ToUpper());
+                    ds = ExecuteQuery($"select * from Persons where role = '{role.ToUpper()}'");
                     foreach (DataRow r in ds.Tables[0].Rows)
                     {
                         li.Add(new Observant((int)r["id"], (string)r["name"], (string)r["address"], (string)r["nationality"], (string)r["serializedImage"], (string)r["description"]));
@@ -117,12 +117,12 @@ namespace PETapp
         public Person GetPerson(int id)
         {
             DataSet ds = new DataSet();
-            ds = ExecuteQuery("Select top 1 * from Persons where id = " + id);
+            ds = ExecuteQuery($"Select top 1 * from Persons where id = '{id}'");
             DataRow r = ds.Tables[0].Rows[0];
             switch ((string)r["role"].ToString().ToUpper())
             {
                 case "AGENT":
-                    Person a = new Agent((int)r["id"], (string)r["name"], (string)r["address"], (string)r["nationality"], (string)r["serializedImage"], (string)r["description"]));
+                    Person a = new Agent((int)r["id"], (string)r["name"], (string)r["address"], (string)r["nationality"], (string)r["serializedImage"], (string)r["description"]);
                     return a;
                 case "INFORMANT":
                     Person i = new Informant((int)r["id"], (string)r["name"], (string)r["address"], (string)r["nationality"], (string)r["serializedImage"], (string)r["description"], (string)r["methodOfPayment"], (string)r["currency"]);
@@ -139,7 +139,7 @@ namespace PETapp
         public Report GetReport(int id)
         {
             DataSet ds = new DataSet();
-            ds = ExecuteQuery("select top 1 * from Reports where id = " + id);
+            ds = ExecuteQuery($"select top 1 * from Reports where id = '{id}'");
             DataRow r = ds.Tables[0].Rows[0];
             return new Report((string)r["text"], GetPerson((int)r["subjectId"]), GetPerson((int)r["authorId"]), (int)r["id"]); 
         }
@@ -148,10 +148,10 @@ namespace PETapp
         {
             List<Comment> li = new List<Comment>();
             DataSet ds = new DataSet();
-            ds = ExecuteQuery("select * from Comments where parentId = " + id);
+            ds = ExecuteQuery($"select * from Comments where parentId = '{id}'");
             foreach (DataRow r in ds.Tables[0].Rows)
             {
-                li.Add(new Comment((string)r["text"], GetPerson((int)r["authorId"]), GetReport((int)r["parentId"]), (int)r["id"]);
+                li.Add(new Comment((string)r["text"], GetPerson((int)r["authorId"]), GetReport((int)r["parentId"]), (int)r["id"]));
             }
             return li;
         }
@@ -159,7 +159,7 @@ namespace PETapp
         public Comment GetComment(int id)
         {
             DataSet ds = new DataSet();
-            ds = ExecuteQuery("select top 1 * from Comments where id = " + id);
+            ds = ExecuteQuery($"select top 1 * from Comments where id = '{id}'");
             DataRow r = ds.Tables[0].Rows[0];
             return new Comment((string)r["text"], GetPerson((int)r["authorId"]), GetReport((int)r["parentId"]), (int)r["id"]);
         }
@@ -167,7 +167,7 @@ namespace PETapp
         public List<Report> GetReportsByAuthor(int authorId)
         {
             List<Report> li = new List<Report>();
-            DataSet ds = ExecuteQuery("select * from Reports where authorId = " + authorId);
+            DataSet ds = ExecuteQuery($"select * from Reports where authorId = '{authorId}'");
             foreach (DataRow r in ds.Tables[0].Rows)
             {
                 li.Add(new Report((string)r["text"], GetPerson((int)r["subjectId"]), GetPerson((int)r["authorId"]), (int)r["id"]));
@@ -178,7 +178,7 @@ namespace PETapp
         public List<Report> GetReportsBySubject(int subjectId)
         {
             List<Report> li = new List<Report>();
-            DataSet ds = ExecuteQuery("select * from Reports where subjectId = " + subjectId);
+            DataSet ds = ExecuteQuery($"select * from Reports where subjectId = '{subjectId}'");
             foreach (DataRow r in ds.Tables[0].Rows)
             {
                 li.Add(new Report((string)r["text"], GetPerson((int)r["subjectId"]), GetPerson((int)r["authorId"]), (int)r["id"]));
@@ -189,7 +189,7 @@ namespace PETapp
         public List<Comment> GetCommentsByAuthor(int authorId)
         {
             List<Comment> li = new List<Comment>();
-            DataSet ds = ExecuteQuery("select * from Comments where authorId = " + authorId);
+            DataSet ds = ExecuteQuery($"select * from Comments where authorId = '{authorId}'");
             foreach (DataRow r in ds.Tables[0].Rows)
             {
                 li.Add(new Comment((string)r["text"], GetPerson((int)r["authorId"]), GetReport((int)r["parentId"]), (int)r["id"]));
@@ -238,18 +238,18 @@ namespace PETapp
             if (p.GetType() == typeof(Agent))
             {
                 return ExecuteNonQuery($"update Persons set role = 'AGENT', name = '{p.Name}', address = '{p.Address}', nationality = '{p.Nationality}', serializedImage = '{p.SerializedImage}', description = '{p.Description}' " +
-                $"Where ID = {p.Id}");
+                $"Where ID = '{p.Id}'");
             }
             else if (p.GetType() == typeof(Informant))
             {
                 Informant i = p as Informant;
                 return ExecuteNonQuery($"update Persons set role = 'AGENT', name = '{p.Name}', address = '{p.Address}', nationality = '{p.Nationality}', serializedImage = '{p.SerializedImage}', description = '{p.Description}', methodOfPayment = '{i.MethodOfPayment}', currency = '{i.Currency}' " +
-                $"Where ID = {p.Id}");
+                $"Where ID = '{p.Id}'");
             }
             else if (p.GetType() == typeof(Observant))
             {
                 return ExecuteNonQuery($"update Persons set role = 'AGENT', name = '{p.Name}', address = '{p.Address}', nationality = '{p.Nationality}', serializedImage = '{p.SerializedImage}', description = '{p.Description}' " +
-                $"Where ID = {p.Id}");
+                $"Where ID = '{p.Id}'");
             }
             else
             {
@@ -260,13 +260,13 @@ namespace PETapp
         public int UpdateReport(Report r)
         {
             return ExecuteNonQuery($"update Reports set text = '{r.Text}', authorId = '{r.Author.Id}', subjectId = '{r.Subject.Id}' " +
-                $"Where ID = {r.Id}");
+                $"Where ID = '{r.Id}'");
         }
 
         public int UpdateComment(Comment c)
         {
             return ExecuteNonQuery($"update Comments set text = '{c.Text}', authorId = '{c.Author.Id}', parentId = {c.ParentReport.Id}' " +
-                $"Where id = {c.Id}");
+                $"Where id = '{c.Id}'");
         }
 
         public int DeletePerson(Person p)

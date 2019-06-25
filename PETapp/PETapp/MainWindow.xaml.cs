@@ -20,9 +20,32 @@ namespace PETapp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string selected = "";
+        private DBHandler db = new DBHandler();
         public MainWindow()
         {
+            DataContext = this;
             InitializeComponent();
+            List<Person> persons = db.AllPersons();
+        }
+
+        private void BtnShowAgents_Click(object sender, RoutedEventArgs e)
+        {
+            List<Person> li = db.AllSubPerson("AGENT");
+            dtgSelected.ItemsSource = li;
+            selected = "AGENT";
+        }
+
+        private void BtnShowInformants_Click(object sender, RoutedEventArgs e)
+        {
+            dtgSelected.ItemsSource = db.AllSubPerson("INFORMANT");
+            selected = "INFORMANT";
+        }
+
+        private void BtnShowObservants_Click(object sender, RoutedEventArgs e)
+        {
+            dtgSelected.ItemsSource = db.AllSubPerson("OBSERVANT");
+            selected = "OBSERVANT";
         }
     }
 }

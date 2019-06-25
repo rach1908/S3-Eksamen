@@ -29,7 +29,14 @@ namespace PETapp
         {
             Description = description;
             SerializedImage = serializedImage;
-            Nationality = nationality;
+            try
+            {
+                Nationality = nationality;
+            }
+            catch (Exception ex)
+            {
+                //brug ex.message til at vise en dialogbox måske?
+            }
             Address = address;
             Name = name;
         }
@@ -49,7 +56,11 @@ namespace PETapp
         public string Nationality
         {
             get { return nationality; }
-            set { nationality = value; }
+            set { if (value.Length != 3)
+                {
+                    throw new ArgumentException("Nationality must follow the guidelines of ISO-3166, Alpha 3");
+                }
+                nationality = value; }
         }
 
         public string Address
@@ -68,6 +79,11 @@ namespace PETapp
         {
             get { return id; }
             set { id = value; }
+        }
+
+        public override string ToString()
+        {
+            return Name + " " + Nationality;
         }
 
     }
