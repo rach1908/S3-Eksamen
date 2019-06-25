@@ -19,7 +19,7 @@
 -serializedImage: nvarchar(max)
 -description: nvarchar(max)
 -methodOfPayment: nvarchar(50)
--valuta: nvarchar(15)</panel_attributes>
+-currency: nvarchar(15)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

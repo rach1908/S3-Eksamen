@@ -48,7 +48,7 @@ Responsibilities
     <panel_attributes>Informant: Person
 --
 -methodOfPayment: string
--valuta: string</panel_attributes>
+-currency: string</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
