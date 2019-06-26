@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Media.Imaging;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace PETapp
 {
@@ -33,8 +35,9 @@ namespace PETapp
             {
                 Nationality = nationality;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
+                throw new ArgumentException("Nationality must follow ISO-3166 Alpha-3 standards");
                 //brug ex.message til at vise en dialogbox måske?
             }
             Address = address;

@@ -38,6 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,8 +57,56 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddInformant.xaml.cs">
+      <DependentUpon>AddInformant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddObservant.xaml.cs">
+      <DependentUpon>AddObservant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddReport.xaml.cs">
+      <DependentUpon>AddReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Comment.cs" />
+    <Compile Include="EditInformant.xaml.cs">
+      <DependentUpon>EditInformant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditObservant.xaml.cs">
+      <DependentUpon>EditObservant.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditReport.xaml.cs">
+      <DependentUpon>EditReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReadReport.xaml.cs">
+      <DependentUpon>ReadReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Report.cs" />
+    <Compile Include="Reports.xaml.cs">
+      <DependentUpon>Reports.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AddInformant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddObservant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditInformant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditObservant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,6 +122,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ReadReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Observant.cs" />

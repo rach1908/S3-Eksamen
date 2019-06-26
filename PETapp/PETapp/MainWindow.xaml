@@ -7,10 +7,24 @@
         mc:Ignorable="d"
         Title="PET Observant Database" Height="450" Width="800">
   <Grid>
-    <DataGrid x:Name="dtgSelected" HorizontalAlignment="Left" Height="323" Margin="27,67,0,0" VerticalAlignment="Top" Width="276"/>
+    <DataGrid x:Name="dtgSelected" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="268" Margin="27,67,0,0" VerticalAlignment="Top" Width="558">
+      <DataGrid.Columns>
+        <DataGridTextColumn Binding="{Binding Name}" Header = "Name" Width="120"/>
+        <DataGridTextColumn Binding="{Binding Address}" Header = "Address" Width="175"/>
+        <DataGridTextColumn Binding="{Binding Nationality}" Header = "Nationality" Width="75"/>
+        <DataGridTextColumn Binding="{Binding Description}" Header = "Description"/>
+      </DataGrid.Columns>
+    </DataGrid>
     <Button x:Name="btnShowAgents" Content="Agents" HorizontalAlignment="Left" Margin="27,27,0,0" VerticalAlignment="Top" Width="75" Click="BtnShowAgents_Click"/>
     <Button x:Name="btnShowInformants" Content="Informants" HorizontalAlignment="Left" Margin="130,27,0,0" VerticalAlignment="Top" Width="75" Click="BtnShowInformants_Click"/>
     <Button x:Name="btnShowObservants" Content="Observants" HorizontalAlignment="Left" Margin="228,27,0,0" VerticalAlignment="Top" Width="75" Click="BtnShowObservants_Click"/>
+    <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="646,67,0,0" VerticalAlignment="Top" Width="90" Click="BtnCreate_Click"/>
+    <Button x:Name="btnSetUser" Content="Choose User" HorizontalAlignment="Left" Margin="27,377,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.217,0.854" Click="BtnSetUser_Click"/>
+    <Label x:Name="lblCurrentUser" Content="" HorizontalAlignment="Left" Margin="208,377,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.065,0.328"/>
+    <Label Content="Current user:" HorizontalAlignment="Left" Margin="130,377,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.135,0.609"/>
+    <Button x:Name="btnUpdate" Content="Edit" HorizontalAlignment="Left" Margin="646,131,0,0" VerticalAlignment="Top" Width="89" Click="BtnUpdate_Click"/>
+    <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="646,199,0,0" VerticalAlignment="Top" Width="90" Click="BtnDelete_Click"/>
+    <Button x:Name="btnReadReports" Content="Read Reports" HorizontalAlignment="Left" Margin="646,271,0,0" VerticalAlignment="Top" Width="90" Click="BtnReadReports_Click"/>
 
 
   </Grid>

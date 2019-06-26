@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace PETapp
 {
@@ -133,7 +136,7 @@ namespace PETapp
                 default:
                     throw new ArgumentException("Role Not Valid");
             }
-            
+
         }
 
         public Report GetReport(int id)
@@ -141,7 +144,7 @@ namespace PETapp
             DataSet ds = new DataSet();
             ds = ExecuteQuery($"select top 1 * from Reports where id = '{id}'");
             DataRow r = ds.Tables[0].Rows[0];
-            return new Report((string)r["text"], GetPerson((int)r["subjectId"]), GetPerson((int)r["authorId"]), (int)r["id"]); 
+            return new Report((string)r["text"], GetPerson((int)r["subjectId"]), GetPerson((int)r["authorId"]), (int)r["id"]);
         }
 
         public List<Comment> GetCommentsForReport(int id)
@@ -243,12 +246,12 @@ namespace PETapp
             else if (p.GetType() == typeof(Informant))
             {
                 Informant i = p as Informant;
-                return ExecuteNonQuery($"update Persons set role = 'AGENT', name = '{p.Name}', address = '{p.Address}', nationality = '{p.Nationality}', serializedImage = '{p.SerializedImage}', description = '{p.Description}', methodOfPayment = '{i.MethodOfPayment}', currency = '{i.Currency}' " +
+                return ExecuteNonQuery($"update Persons set role = 'INFORMANT', name = '{p.Name}', address = '{p.Address}', nationality = '{p.Nationality}', serializedImage = '{p.SerializedImage}', description = '{p.Description}', methodOfPayment = '{i.MethodOfPayment}', currency = '{i.Currency}' " +
                 $"Where ID = '{p.Id}'");
             }
             else if (p.GetType() == typeof(Observant))
             {
-                return ExecuteNonQuery($"update Persons set role = 'AGENT', name = '{p.Name}', address = '{p.Address}', nationality = '{p.Nationality}', serializedImage = '{p.SerializedImage}', description = '{p.Description}' " +
+                return ExecuteNonQuery($"update Persons set role = 'OBSERVANT', name = '{p.Name}', address = '{p.Address}', nationality = '{p.Nationality}', serializedImage = '{p.SerializedImage}', description = '{p.Description}' " +
                 $"Where ID = '{p.Id}'");
             }
             else
@@ -271,23 +274,28 @@ namespace PETapp
 
         public int DeletePerson(Person p)
         {
-            List<Report> reports = GetReportsByAuthor(p.Id);
-            List<Report> subjectReports = GetReportsBySubject(p.Id);
-            List<Comment> comments = GetCommentsByAuthor(p.Id);
-            //Check if the person to be deleted is author or subject anywhere
-            if (reports.Count > 0 || comments.Count > 0 || subjectReports.Count > 0)
-            {
-                throw new Exception("You cannot delete a person while they are the subject or author of a report or comment");
-            }
-            else
+            try
             {
                 return ExecuteNonQuery($"delete from Persons where ID='{p.Id}';");
             }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("You cannot delete a person while they are the subject or author of a report or comment. Error: " + ex.Message);
+            }
         }
+
 
         public int DeleteReport(Report r)
         {
-            List<Comment> comments = GetCommentsForReport(r.Id);
+            List<Comment> comments = new List<Comment>();
+            try
+            {
+                comments = GetCommentsForReport(r.Id);
+            }
+            catch (Exception)
+            {
+                //empty query
+            }
             foreach (Comment c in comments)
             {
                 DeleteComment(c);
@@ -299,5 +307,31 @@ namespace PETapp
         {
             return ExecuteNonQuery($"delete from Comments where id='{c.Id}';");
         }
+
+        public string ImageToString(string path)
+        {
+            if (path == null)
+            {
+                throw new ArgumentException("invalid path");
+            }
+            Image im = Image.FromFile(path);
+            MemoryStream ms = new MemoryStream();
+            im.Save(ms, im.RawFormat);
+            byte[] array = ms.ToArray();
+            return Convert.ToBase64String(array);
+        }
+
+        public BitmapImage StringToImage(string str)
+        {
+            byte[] imgBytes = Convert.FromBase64String(str);
+
+            BitmapImage bmi = new BitmapImage();
+            MemoryStream ms = new MemoryStream(imgBytes);
+            bmi.BeginInit();
+            bmi.StreamSource = ms;
+            bmi.EndInit();
+            return bmi;
+        }
     }
 }
+
