@@ -5,30 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PETapp"
         mc:Ignorable="d"
-        Title="Edit Informant" Height="450" Width="800">
+        Title="Edit Informant" Height="450" Width="977.6">
   <Grid>
     <Label Content="Original Values:" HorizontalAlignment="Left" Margin="55,48,0,0" VerticalAlignment="Top"/>
     <Label x:Name="lblName" Content="Label" HorizontalAlignment="Left" Margin="55,95,0,0" VerticalAlignment="Top"/>
     <Label x:Name="lblAddress"  Content="Label" HorizontalAlignment="Left" Margin="55,126,0,0" VerticalAlignment="Top"/>
     <Label x:Name="lblNationality" Content="Label" HorizontalAlignment="Left" Margin="55,157,0,0" VerticalAlignment="Top"/>
     <Label x:Name="lblDescription" Content="Label" HorizontalAlignment="Left" Margin="55,188,0,0" VerticalAlignment="Top"/>
-    <Label Content="Name" HorizontalAlignment="Left" Margin="246,95,0,0" VerticalAlignment="Top"/>
-    <Label Content="Address" HorizontalAlignment="Left" Margin="246,126,0,0" VerticalAlignment="Top"/>
-    <Label Content="Nationality" HorizontalAlignment="Left" Margin="246,157,0,0" VerticalAlignment="Top"/>
-    <Label Content="Description" HorizontalAlignment="Left" Margin="246,188,0,0" VerticalAlignment="Top"/>
-    <TextBox x:Name="tbxName" HorizontalAlignment="Left" Height="23" Margin="379,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-    <TextBox x:Name="tbxAddress" HorizontalAlignment="Left" Height="23" Margin="379,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-    <TextBox x:Name="tbxNationality" HorizontalAlignment="Left" Height="23" Margin="379,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-    <TextBox x:Name="tbxDescription" HorizontalAlignment="Left" Height="23" Margin="379,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-    <TextBox x:Name="tbxMoP" HorizontalAlignment="Left" Height="23" Margin="379,223,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-    <TextBox x:Name="tbxCurrency" HorizontalAlignment="Left" Height="23" Margin="379,254,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-    <Label Content="New Values:" HorizontalAlignment="Left" Margin="379,48,0,0" VerticalAlignment="Top"/>
+    <Label Content="Name" HorizontalAlignment="Left" Margin="302,95,0,0" VerticalAlignment="Top"/>
+    <Label Content="Address" HorizontalAlignment="Left" Margin="302,126,0,0" VerticalAlignment="Top"/>
+    <Label Content="Nationality" HorizontalAlignment="Left" Margin="302,157,0,0" VerticalAlignment="Top"/>
+    <Label Content="Description" HorizontalAlignment="Left" Margin="302,188,0,0" VerticalAlignment="Top"/>
+    <TextBox x:Name="tbxName" HorizontalAlignment="Left" Height="23" Margin="436,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+    <TextBox x:Name="tbxAddress" HorizontalAlignment="Left" Height="23" Margin="436,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+    <TextBox x:Name="tbxNationality" HorizontalAlignment="Left" Height="23" Margin="436,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+    <TextBox x:Name="tbxDescription" HorizontalAlignment="Left" Height="23" Margin="436,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+    <TextBox x:Name="tbxMoP" HorizontalAlignment="Left" Height="23" Margin="436,223,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+    <TextBox x:Name="tbxCurrency" HorizontalAlignment="Left" Height="23" Margin="436,254,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+    <Label Content="New Values:" HorizontalAlignment="Left" Margin="435,48,0,0" VerticalAlignment="Top"/>
     <Button x:Name="btnUpdate" Content="Save Changes" HorizontalAlignment="Left" Margin="55,298,0,0" VerticalAlignment="Top" Width="75" Click="BtnUpdate_Click"/>
-    <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="424,298,0,0" VerticalAlignment="Top" Width="75" Click="BtnCancel_Click"/>
-    <Image x:Name="imgPicture" HorizontalAlignment="Left" Height="198" Margin="594,53,0,0" VerticalAlignment="Top" Width="250"/>
-    <Button x:Name="btnUpload" Content="Upload Image" HorizontalAlignment="Left" Margin="594,298,0,0" VerticalAlignment="Top" Width="100" Click="BtnUpload_Click"/>
-    <Label Content="Method of Payment" HorizontalAlignment="Left" Margin="246,219,0,0" VerticalAlignment="Top"/>
-    <Label Content="Currency" HorizontalAlignment="Left" Margin="246,250,0,0" VerticalAlignment="Top"/>
+    <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="480,298,0,0" VerticalAlignment="Top" Width="75" Click="BtnCancel_Click"/>
+    <Image x:Name="imgPicture" HorizontalAlignment="Left" Height="198" Margin="650,53,0,0" VerticalAlignment="Top" Width="250"/>
+    <Button x:Name="btnUpload" Content="Upload Image" HorizontalAlignment="Left" Margin="650,298,0,0" VerticalAlignment="Top" Width="100" Click="BtnUpload_Click"/>
+    <Label Content="Method of Payment" HorizontalAlignment="Left" Margin="302,219,0,0" VerticalAlignment="Top"/>
+    <Label Content="Currency" HorizontalAlignment="Left" Margin="302,250,0,0" VerticalAlignment="Top"/>
     <Label x:Name="lblMoP" Content="Label" HorizontalAlignment="Left" Margin="55,219,0,0" VerticalAlignment="Top"/>
     <Label x:Name="lblCurrency" Content="Label" HorizontalAlignment="Left" Margin="55,249,0,0" VerticalAlignment="Top"/>
 

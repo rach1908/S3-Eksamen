@@ -7,7 +7,13 @@
         mc:Ignorable="d"
         Title="Reports" Height="450" Width="602">
   <Grid>
-    <DataGrid x:Name="dtgSubject" HorizontalAlignment="Left" Height="288" Margin="32,80,0,0" VerticalAlignment="Top" Width="346"/>
+    <DataGrid x:Name="dtgSubject" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="288" Margin="32,80,0,0" VerticalAlignment="Top" Width="346">
+      <DataGrid.Columns>
+        <DataGridTextColumn Binding="{Binding Path=Author.Name}" Header = "Author"/>
+        <DataGridTextColumn Binding="{Binding Path=Subject.Name}" Header = "Subject"/>
+        <DataGridTextColumn Binding="{Binding Path=Text.Count}" Header="Letter Count"/>
+      </DataGrid.Columns>
+    </DataGrid>
     <Label x:Name="lblIntro" Content="" HorizontalAlignment="Left" Margin="32,24,0,0" VerticalAlignment="Top"/>
     <Button x:Name="btnRead" Content="Read Selected Report" HorizontalAlignment="Left" Margin="434,85,0,0" VerticalAlignment="Top" Width="130" Click="BtnRead_Click"/>
     <Button x:Name="btnCreate" Content="Create New Report" HorizontalAlignment="Left" Margin="434,132,0,0" VerticalAlignment="Top" Width="130" Click="BtnCreate_Click"/>
